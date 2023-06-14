@@ -1,4 +1,4 @@
-package com.example.movieapp.adapter;
+package com.example.movieapp.presentation.main.adapter;
 
 import android.view.ViewGroup;
 
