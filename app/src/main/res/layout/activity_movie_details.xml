@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="com.example.movieapp.presentation.main.model.Movie" />
+            type="com.example.movieapp.data.model.Movie" />
     </data>
 
     <LinearLayout
@@ -46,7 +46,10 @@
                         android:id="@+id/movie_bg_poster_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/image_placeholder" />
+                        android:src="@drawable/image_placeholder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/movie_poster_img"
@@ -88,7 +91,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="5dp"
-                                android:text="@{String.valueOf(movie.year)}"
+                                android:text="@{movie.released}"
                                 android:textSize="16sp"
                                 tools:text="2023" />
 
@@ -97,7 +100,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="5dp"
-                                android:text="@{String.valueOf(movie.rating)}"
+                                android:text="@{movie.rated}"
                                 android:textSize="16sp"
                                 tools:text="5.0" />
 
@@ -108,15 +111,15 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/black"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:background="@color/black" />
 
                 <TextView
                     android:id="@+id/movie_overview_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
-                    android:text="@{movie.overview}"
+                    android:text="@{movie.plot}"
                     android:textSize="16sp"
                     tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
 
