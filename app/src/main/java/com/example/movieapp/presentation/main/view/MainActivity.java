@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.example.movieapp.R;
+import com.example.movieapp.data.database.model.MovieLocal;
 import com.example.movieapp.data.model.Movie;
 import com.example.movieapp.databinding.ActivityMainBinding;
 import com.example.movieapp.presentation.main.adapter.MoviesAdapter;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getAllMovies().observe(this, this::loadRv);
     }
 
-    public void loadRv(ArrayList<Movie> movies) {
+    public void loadRv(ArrayList<MovieLocal> movies) {
         //for dummy data
         /*ArrayList<Movie> movies = new ArrayList<>();
 
@@ -73,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
         moviesAdapter.setMovies(movies);
 
-        binding.setMovie(movies.get(0));
+        //binding.setMovie(movies.get(0));
 
         moviesAdapter.setListener(new MoviesAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Movie movie) {
+            public void onItemClick(MovieLocal movie) {
 
                 int orientation = getResources().getConfiguration().orientation;
                 if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -85,13 +86,13 @@ public class MainActivity extends AppCompatActivity {
 
                     //set movie poster
                     Glide.with(binding.getRoot())
-                            .load(movie.getImages().get(0))
+                            .load(movie.images)
                             .centerCrop()
                             .into(binding.moviePosterImg);
 
                     //set movie bg
                     Glide.with(binding.getRoot())
-                            .load(movie.getImages().get(1))
+                            .load(movie.poster)
                             .centerCrop()
                             .into(binding.movieBgPosterImg);
                 } else {

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movieapp.R;
+import com.example.movieapp.data.database.model.MovieLocal;
 import com.example.movieapp.databinding.ItemMovieBinding;
 import com.example.movieapp.data.model.Movie;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
     private OnItemClickListener listener;
-    private ArrayList<Movie> movieList = new ArrayList<>();
+    private ArrayList<MovieLocal> movieList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -29,17 +30,17 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-        Movie movie = movieList.get(position);
+        MovieLocal movie = movieList.get(position);
         holder.itemMovieBinding.setMovie(movie);
 
         Glide.with(holder.itemMovieBinding.getRoot())
-                .load(movie.getImages().get(0))
+                .load(movie.images)
                 .centerCrop()
                 .into(holder.itemMovieBinding.moviePosterImg);
 
     }
 
-    public void setMovies(ArrayList<Movie> movieList) {
+    public void setMovies(ArrayList<MovieLocal> movieList) {
         this.movieList = movieList;
         notifyDataSetChanged();
     }
@@ -72,7 +73,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Movie movie);
+        void onItemClick(MovieLocal movie);
     }
 
     public void setListener(OnItemClickListener listener) { this.listener = listener;}

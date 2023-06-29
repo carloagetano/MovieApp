@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.movieapp.data.database.model.MovieLocal;
 import com.example.movieapp.data.model.Movie;
 import com.example.movieapp.data.repository.MovieRepository;
 
@@ -16,12 +17,22 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
-        movieRepository = new MovieRepository();
+        movieRepository = new MovieRepository(application.getApplicationContext());
+
+        saveMovies();
     }
 
-    public LiveData<ArrayList<Movie>> getAllMovies() {
+    private void saveMovies() {
+        movieRepository.saveMovies();
+    }
+
+    public LiveData<ArrayList<MovieLocal>> getAllMovies() {
         return movieRepository.getMoviesLiveData();
     }
+
+    /*public LiveData<ArrayList<Movie>> getAllMovies() {
+        return movieRepository.getMoviesLiveData();
+    }*/
 
 
 

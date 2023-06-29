@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
 import com.example.movieapp.R;
+import com.example.movieapp.data.database.model.MovieLocal;
 import com.example.movieapp.data.model.Movie;
 import com.example.movieapp.databinding.ActivityMovieDetailsBinding;
 
@@ -23,7 +24,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details);
 
         Intent intent = getIntent();
-        Movie movie = (Movie) intent.getSerializableExtra(MOVIE);
+        MovieLocal movie = (MovieLocal) intent.getSerializableExtra(MOVIE);
 
         setMovieData(movie);
 
@@ -32,18 +33,18 @@ public class MovieDetailsActivity extends AppCompatActivity {
         });
     }
 
-    public void setMovieData(Movie movie) {
+    public void setMovieData(MovieLocal movie) {
         binding.setMovie(movie);
 
         //set movie poster
         Glide.with(this)
-                .load(movie.getImages().get(0))
+                .load(movie.images)
                 .centerCrop()
                 .into(binding.moviePosterImg);
 
         //set movie bg
         Glide.with(this)
-                .load(movie.getImages().get(1))
+                .load(movie.poster)
                 .centerCrop()
                 .into(binding.movieBgPosterImg);
     }
