@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.movieapp.data.database.model.MovieLocal;
-import com.example.movieapp.data.model.Movie;
 import com.example.movieapp.data.repository.MovieRepository;
 
 import java.util.ArrayList;
@@ -23,7 +22,11 @@ public class MainActivityViewModel extends AndroidViewModel {
     }
 
     private void saveMovies() {
-        movieRepository.saveMovies();
+        movieRepository.saveMovies(success -> {
+            if (success) {
+                getAllMovies();
+            }
+        });
     }
 
     public LiveData<ArrayList<MovieLocal>> getAllMovies() {
@@ -33,7 +36,6 @@ public class MainActivityViewModel extends AndroidViewModel {
     /*public LiveData<ArrayList<Movie>> getAllMovies() {
         return movieRepository.getMoviesLiveData();
     }*/
-
 
 
 }

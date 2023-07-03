@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.bumptech.glide.Glide;
 import com.example.movieapp.R;
 import com.example.movieapp.data.database.model.MovieLocal;
-import com.example.movieapp.data.model.Movie;
 import com.example.movieapp.databinding.ActivityMainBinding;
 import com.example.movieapp.presentation.main.adapter.MoviesAdapter;
 import com.example.movieapp.presentation.main.viewmodel.MainActivityViewModel;

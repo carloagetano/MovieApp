@@ -1,7 +1,6 @@
 package com.example.movieapp.data.repository;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.room.Room;
@@ -10,10 +9,10 @@ import com.example.movieapp.data.database.AppDatabase;
 import com.example.movieapp.data.database.MovieLocalDao;
 import com.example.movieapp.data.database.model.MovieLocal;
 import com.example.movieapp.data.model.Movie;
+import com.example.movieapp.data.service.ApiCallback;
 import com.example.movieapp.data.service.MovieAPIService;
 import com.example.movieapp.data.service.RetrofitInstance;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -41,7 +40,7 @@ public class MovieRepository {
 
     private AppDatabase db;
 
-    public void saveMovies() {
+    public void saveMovies(final ApiCallback callback) {
         MovieAPIService movieAPIService = RetrofitInstance.getService();
 
         Call<ArrayList<Movie>> call = movieAPIService.getMovies();
@@ -53,6 +52,7 @@ public class MovieRepository {
 
                 AppDatabase.databaseWriteExecutor.execute(() -> {
                     if (movieDao.checkData() == 1) {
+                        callback.onResponse(true);
                         return;
                     }
                     if (movies != null) {
@@ -67,12 +67,13 @@ public class MovieRepository {
                                     movie.getTotalSeasons(), movie.getComingSoon()));
                         }
                     }
+                    callback.onResponse(true);
                 });
             }
 
             @Override
             public void onFailure(Call<ArrayList<Movie>> call, Throwable t) {
-
+                callback.onResponse(false);
             }
         });
     }
