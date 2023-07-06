@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         subscribe();
+        onClickListeners();
     }
 
     public void subscribe() {
@@ -102,5 +103,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onClickListeners() {
+        binding.addMovieBtn.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, AddMovieActivity.class));
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        subscribe();
     }
 }
