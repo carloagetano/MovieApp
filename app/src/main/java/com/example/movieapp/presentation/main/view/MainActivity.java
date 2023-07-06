@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.bumptech.glide.Glide;
 import com.example.movieapp.R;
 import com.example.movieapp.data.database.model.MovieLocal;
-import com.example.movieapp.data.model.Movie;
 import com.example.movieapp.databinding.ActivityMainBinding;
 import com.example.movieapp.presentation.main.adapter.MoviesAdapter;
 import com.example.movieapp.presentation.main.viewmodel.MainActivityViewModel;
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         subscribe();
+        onClickListeners();
     }
 
     public void subscribe() {
@@ -103,5 +103,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onClickListeners() {
+        binding.addMovieBtn.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, AddMovieActivity.class));
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        subscribe();
     }
 }

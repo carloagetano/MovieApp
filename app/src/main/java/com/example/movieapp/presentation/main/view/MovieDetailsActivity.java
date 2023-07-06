@@ -28,9 +28,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         setMovieData(movie);
 
-        binding.movieDetailTitleTv.setOnClickListener(v -> {
-            startActivity(new Intent(MovieDetailsActivity.this, MainActivity.class));
-        });
+        onClickListeners();
     }
 
     public void setMovieData(MovieLocal movie) {
@@ -47,5 +45,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 .load(movie.poster)
                 .centerCrop()
                 .into(binding.movieBgPosterImg);
+    }
+
+    public void onClickListeners() {
+        binding.movieDetailTitleTv.setOnClickListener(v -> {
+            finish();
+        });
     }
 }

@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#CCdfdfdf"
-                android:text="@{movie.year}"
+                android:text="@{movie.released}"
                 android:textSize="16sp"
                 tools:text="2023" />
         </LinearLayout>

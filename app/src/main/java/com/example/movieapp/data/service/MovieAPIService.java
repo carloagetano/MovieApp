@@ -5,10 +5,16 @@ import com.example.movieapp.data.model.Movie;
 import java.util.ArrayList;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
 
 public interface MovieAPIService {
 
-    @GET("/saniyusuf/406b843afdfb9c6a86e25753fe2761f4/raw/523c324c7fcc36efab8224f9ebb7556c09b69a14/Film.JSON")
+    @GET("/movies")
     Call<ArrayList<Movie>> getMovies();
+
+    @POST("/add-movie")
+    Call<Movie> addMovie(@Body Movie movie, @Header("Authorization") String authorization);
 }
